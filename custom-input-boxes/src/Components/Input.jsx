@@ -55,6 +55,29 @@ function backspacehandler(e,index)
  
 }
 
+function onpastehandler(xx)
+{
+    const thevalue=xx.target.value
+    const val=[...collection]
+     
+setcollection(val)
+    for(let i=0;i<props.maximumvalue;i=i+5)
+    {
+        val[i]=""
+        for(let j=i;j<i+props.numbers;j++)
+        {
+            val[i]=val[i]+thevalue[j]
+           
+
+        }
+console.log(val,"value")
+        setcollection(val)
+
+
+    }
+
+
+}
 
 return (
 
@@ -62,7 +85,7 @@ return (
 
 <h1>Please write input below</h1>
 
-{numbers.map((e,index)=><Input ref={n=>references.current[index]=n} onKeyDown={(x)=>{backspacehandler(x,index)}} onChange={(even)=>{handlechange(even,index)}} key={index} maxLength={props.maximumvalue}/>)}
+{numbers.map((e,index)=><Input ref={n=>references.current[index]=n}  onPaste={(xx)=>{onpastehandler(xx)}} onKeyDown={(x)=>{backspacehandler(x,index)}} onChange={(even)=>{handlechange(even,index)}} key={index} maxLength={props.maximumvalue}/>)}
 </>
 
 )
